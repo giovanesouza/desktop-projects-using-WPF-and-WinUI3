@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="RestSharp" Version="111.4.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EditorConfigFiles Remove="C:\TestsVisualStudio\FilteringSortingApi\FilteringSortingApiWPF\.editorconfig" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="C:\TestsVisualStudio\FilteringSortingApi\FilteringSortingApiWPF\.editorconfig" />
+  </ItemGroup>
+
+</Project>

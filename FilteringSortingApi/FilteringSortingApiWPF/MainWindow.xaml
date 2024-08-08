@@ -1,0 +1,187 @@
+﻿<Window x:Class="FilteringSortingApiWPF.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FilteringSortingApiWPF"
+        mc:Ignorable="d"
+        Title="Filtragem, Ordenação e Consumo de API" Height="600" Width="800" WindowStartupLocation="CenterScreen" Loaded="Window_Loaded">
+
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <!-- HEADER 1x3 (Cadastro + Filtros + Ordenação) -->
+        <Grid x:Name="gridHeader" Background="#4CD0D0D0" Grid.ColumnSpan="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <!-- Coluna Cadastro -->
+                <ColumnDefinition Width="auto" />
+                <!-- Coluna Filtros -->
+                <ColumnDefinition Width="auto" />
+                <!-- Coluna Ordenação -->
+                <ColumnDefinition Width="auto" />
+            </Grid.ColumnDefinitions>
+
+            <!-- Grade com a área do Cadastro -->
+            <Grid x:Name="gridHeaderRegister" Grid.Column="0" Margin="0,0,20,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <Label x:Name="lblTitleRegister" Grid.Row="0"
+                       Content="CADASTRO"  HorizontalAlignment="Left"
+                       Margin="10,-1,0,0" VerticalAlignment="Top"
+                       FontWeight="Bold" FontSize="16" Foreground="#FF007BFF"/>
+
+                <StackPanel Grid.Row="1">
+                    <Label x:Name="lblRegisterName" Content="NOME"
+                           FontSize="12" HorizontalAlignment="Left" Margin="10,0,0,0"/>
+
+                    <TextBox x:Name="txtRegisterName"
+                             TextWrapping="NoWrap" FontSize="14"
+                             HorizontalAlignment="Left" Width="175" Margin="10,0,0,0"/>     
+                    
+                    <Label x:Name="lblRegisterSurname" Content="SOBRENOME"
+                           FontSize="12" HorizontalAlignment="Left" Margin="10,0,0,0"/>
+
+                    <TextBox x:Name="txtRegisterSurname"
+                             TextWrapping="NoWrap" FontSize="14"
+                             HorizontalAlignment="Left" Width="175" Margin="10,0,0,0"/>
+
+                    <Label x:Name="lblRegisterCpf" Content="CPF" FontSize="12" 
+                           HorizontalAlignment="Left" Margin="10,0,0,0" KeyUp="cpf_KeyUp" />
+
+                    <TextBox x:Name="txtRegisterCpf" Grid.Row="2" 
+                             TextWrapping="NoWrap" FontSize="14" MaxLength="14"
+                             HorizontalAlignment="Left" Width="175" Margin="10,0,0,0" />
+
+                    <Button x:Name="btnRegister" Content="Cadastrar" 
+                            Margin="0,17,0,4" Width="56" HorizontalAlignment="Right" Click="btnRegister_Click" />
+               
+                </StackPanel>
+            </Grid>
+            
+
+            <!-- Grade com a área dos Filtros-->
+            <Grid x:Name="gridHeaderFilters" Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                    <!--<RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />-->
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <!--<ColumnDefinition Width="*" />-->
+                </Grid.ColumnDefinitions>
+
+                <Label x:Name="lblTitleFilters"
+                       Content="FILTRAR" Grid.Row="0" HorizontalAlignment="Left"
+                       Margin="10,-1,0,0" VerticalAlignment="Top"
+                       FontWeight="Bold" FontSize="16" Foreground="#FF007BFF"/>
+
+                <StackPanel Grid.Row="1" Margin="0,0,20,0">
+                    <Label x:Name="lblName" Content="NOME" Grid.Row="1" Grid.Column="0"
+                       FontSize="12" HorizontalAlignment="Left" Margin="10,0,0,0"/>
+
+                    <TextBox x:Name="txtName" Grid.Row="2" Grid.Column="0"
+                         TextWrapping="NoWrap" FontSize="14"
+                         HorizontalAlignment="Left" Width="175" Margin="10,0,0,0"/>
+
+                    <Label x:Name="lblSurname" Content="SOBRENOME"
+                           FontSize="12" HorizontalAlignment="Left" Margin="10,0,0,0"/>
+
+                    <TextBox x:Name="txtSurname"
+                             TextWrapping="NoWrap" FontSize="14"
+                             HorizontalAlignment="Left" Width="175" Margin="10,0,0,0"/>
+
+                    <Label x:Name="lblCpf" Content="CPF" Grid.Row="1" Grid.Column="1"
+                       FontSize="12" HorizontalAlignment="Left" Margin="10,0,0,0"/>
+
+                    <TextBox x:Name="txtCpf" Grid.Row="2" Grid.Column="1"
+                         TextWrapping="NoWrap" FontSize="14"
+                         HorizontalAlignment="Left" Width="175" Margin="10,0,0,0" MaxLength="14" KeyUp="cpf_KeyUp"/>
+
+                    <Button x:Name="btnFilter" Content="Filtrar" Grid.Row="3" Grid.Column="1"
+                        Margin="0,17,0,4" Width="56" HorizontalAlignment="Right" Click="btnFilter_Click"/>
+
+                </StackPanel>
+            </Grid>
+
+            <!-- Grade com a área Ordenação -->
+            <Grid x:Name="gridHeaderOrdination" Grid.Row="1" Grid.Column="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <Label x:Name="lblTitleOrdination"
+                   Content="ORDENAR" Grid.Row="0" HorizontalAlignment="Left"
+                   Margin="10,-1,0,0" VerticalAlignment="Top"
+                   FontWeight="Bold" FontSize="16" Foreground="#FF007BFF"/>
+
+                <ComboBox x:Name="cbbOrdination" Grid.Row="1" Grid.Column="0" Margin="10,25,75,0"
+                          VerticalAlignment="Top" HorizontalAlignment="Left" SelectionChanged="cbbOrdination_SelectionChanged">
+                    <ComboBoxItem Content="Padrão" IsSelected="True" />
+                    <ComboBoxItem Content="Ordenar por Nome"/>
+                    <ComboBoxItem Content="Ordenar por Sobrenome"/>
+                </ComboBox>
+
+
+            </Grid>
+
+        </Grid>
+
+
+        <!--<DataGrid x:Name="dataGrid" Grid.Row="1" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="8,10,12,10" Grid.ColumnSpan="2" IsReadOnly="True"/>-->
+        <!--<DataGrid x:Name="dataGrid" Grid.Row="1" AutoGenerateColumns="True" Margin="8,10,12,10" Grid.ColumnSpan="2" IsReadOnly="True" />-->
+        
+        <DataGrid x:Name="dataGrid" Grid.Row="1" AutoGenerateColumns="False" Margin="8,10,12,10" Grid.ColumnSpan="2" IsReadOnly="True">
+            <DataGrid.Columns>
+                <!--
+                Header: Cabeçalho - Título da coluna 
+                Binding: pega o valor do atributo passado na Classe (modelo)
+                -->
+                <!--<DataGridTextColumn Header="#" Binding="{Binding Id}" Width="50" />-->
+                <!--<DataGridTextColumn Header="Nome" Binding="{Binding Name}" Width="*" />-->
+                <!--<DataGridTextColumn Header="Sobrenome" Binding="{Binding Surname}" Width="*" />-->
+                <DataGridTextColumn Header="Nome Completo" Binding="{Binding Fullname}" Width="*" />
+                <DataGridTextColumn Header="CPF" Binding="{Binding Cpf}" Width="150" />
+                <!--<DataGridTextColumn Header="Data Cadastro" Binding="{Binding RegisteredAt}" Width="*" />-->
+
+                <!-- DataGridTemplateColum: Utilizar para inserir outros controles -->
+                <DataGridTemplateColumn Header="Ações" Width="200">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <!-- Para exibir mais de 1 btn, englobar com Grid ou StackPanel (prop Orientation - Ver e Hor) -->
+                            <Button Content="Editar" Click="BtnEdit_Click" Tag="{Binding}" Margin="2" />
+                        </DataTemplate>  
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Window>

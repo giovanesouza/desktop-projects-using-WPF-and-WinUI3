@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "FilteringSortingApiWinUi (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "FilteringSortingApiWinUi (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}
